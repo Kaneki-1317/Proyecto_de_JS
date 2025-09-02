@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+:root{
+    /*Color*/
+    --color-rojo-principal: #700000;
+    --color-de-fondo: #191919;
+    --color-para-texto: #ffefef;
+    --color-para-precio: #00d312;
+    /*TipoGrafia*/
+    --font-principal: "The Seasons", serif;
+    --font-secundario: "Quattrocento", serif;
+    --font-terciario: "Open Sans", serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: aqua;
+    overflow: hidden;
+}
+
+main{
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-de-fondo);
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+header{
+    background-color: var(--color-rojo-principal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60%;
+    height: 15%;
+}
+
+.menu{
+    display: flex;
+    gap: 50px;
+}
+
+.menu button{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 250;
+    font-style: normal;
+    font-size: 17px;
+    color: var(--color-para-texto);
+}
+
+.menu i{
+    color: var(--color-para-texto);
+}
+
+.logo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu button{
+    background: none;
+    border: none;
+}
+
+.marca{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 50px;
+    margin-bottom: -15px;
+    color: var(--color-para-texto);
+}
+
+.nombre-marca{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 25px;
+    color: var(--color-para-texto);
+}
+
+.container-productos{
+    background-color: var(--color-de-fondo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85%;
+    gap: 30px;
+}
+
+.card-producto{
+    background-color: var(--color-rojo-principal);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    width: 20%;
+    padding: 20px;
+    color: var(--color-para-texto);
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 20px;
+    gap: 20px;
+    border-radius: 10px;
+    transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+.card-producto:hover{
+    background-color: #700000;
+    opacity: 80%;
+    transform: translateY(-10px);
+}
+
+img{
+    border-radius: 20px;
+    max-width: 80%;
+    height: 90%;
+    object-fit: cover;
+}
+
+.productos{
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 5%;
+}
+
+.productos div{
+    background-color: var(--color-rojo-principal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    height: 400px;
+}
+
+.productos div{
+    display: flex;
+    flex-direction: column;
+}
+
+.img-productos{
+    border-radius: 20px;
+    max-width: 50%;
+    height: 60%;
+    object-fit: contain;
+}
+
+.title{
+    color: var(--color-para-texto);
+    padding: 15px;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 15px;
+}
+
+.precio{
+    color: var(--color-para-precio);
+    font-size: 20px;
+}
+
