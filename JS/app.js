@@ -5,14 +5,17 @@ const urlApi = "https://fakestoreapi.com/products"
 fetch(urlApi)
 .then(response => response.json())
 .then(data => {
-    const contenedor = document.getElementById("productos")
-    const producto = data[0];
-    contenedor.innerHTML =`
-        <h2>${producto.title}</h2>
-        <p>${producto.description}</p>
-        <p><b>Precio:</b> $${producto.price}</p>
-        <img src="${producto.image}" class="producto-imagen">
-    `
+    for (let i = 0; i <= 20; i++){
+        const contenedor = document.getElementById(`producto${i + 1}`)
+        const producto = data[i];
 
-    //esta forma se puede hacer multiplicar esto 20 veces pero no es optimizado.
+        if(contenedor && producto){
+            contenedor.innerHTML = `
+                <img class="img-productos" src="${producto.image}">
+                <h2 class="title">${producto.title}</h2>
+                <p class="precio">$${producto.price}</p>
+                <button>Añadir</button>
+            `;
+        }
+    }
 })
