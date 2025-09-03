@@ -19,3 +19,13 @@ fetch(urlApi)
         }
     }
 })
+
+function mostarCarito(){
+    var carrito = document.getElementsByClassName("carrito")[0];
+
+    if(carrito.style.visibility == "hidden"){
+        carrito.style.visibility = "visible";
+    }else{
+        carrito.style.visibility = "hidden";
+    }
+}

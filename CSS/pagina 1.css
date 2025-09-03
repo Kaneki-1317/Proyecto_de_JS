@@ -6,6 +6,8 @@
     --color-de-fondo: #191919;
     --color-para-texto: #ffefef;
     --color-para-precio: #00d312;
+    --color-para-carrito: #700000;
+    --color-borde-carrito: #000000;
     /*TipoGrafia*/
     --font-principal: "The Seasons", serif;
     --font-secundario: "Quattrocento", serif;
@@ -36,6 +38,7 @@ main{
 }
 
 header{
+    position: relative;
     background-color: var(--color-rojo-principal);
     display: flex;
     justify-content: center;
@@ -179,4 +182,19 @@ img{
     color: var(--color-para-precio);
     font-size: 20px;
 }
+
+.carrito{
+    border: var(--color-borde-carrito) solid 3px;
+    position: absolute;
+    background-color: var(--color-para-carrito);
+    height: 250px;
+    width: 350px;
+    text-align: center;
+    top: 95px;
+    right: 60px;
+    z-index: 5;
+    box-shadow: 0px 0px 10px 5px #4b4646;
+    overflow-y:scroll;
+}
+
 
