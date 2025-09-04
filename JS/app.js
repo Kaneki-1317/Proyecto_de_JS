@@ -23,14 +23,15 @@ fetch(urlApi)
 function mostarCarito(){
     var carrito = document.getElementsByClassName("carrito")[0];
 
-    if(carrito.style.visibility == "hidden"){
-        carrito.style.visibility = "visible";
-    }else{
+    if(carrito.style.visibility == "visible"){
         carrito.style.visibility = "hidden";
+    }else{
+        carrito.style.visibility = "visible";
     }
 }
 
 const todosProductos = document.getElementById("todosProductos");
+const productCarrito = document.getElementById("proctCarrito")
 
 let productsArray = [];
 
@@ -61,4 +62,55 @@ function selectData(prod){
     productsArray = [...productsArray, productObj]
 
     productsHtml();
+}
+
+function productsHtml(){
+    cleanHtml()
+    productsArray.forEach(prod =>{
+        const { img, title, price, quantity, id } = prod;
+        
+        const tr = document.createElement("tr");
+
+
+        const tdImg = document.createElement("td");
+        const prodImg = document.createElement("img");
+        prodImg.src = img;
+        prodImg.alt = "image product";
+        tdImg.appendChild(prodImg);
+
+        const tdTitle = document.createElement("td");
+        const prodTitle = document.createElement("p");
+        prodTitle.textContent = title;
+        tdTitle.appendChild(prodTitle);
+
+        const tdPrice = document.createElement("td");
+        const prodPrice = document.createElement("p");
+        prodPrice.textContent = `$${price.toFixed(2)}`;
+        tdPrice.appendChild(prodPrice);
+
+        const tdQuantity = document.createElement("td");
+        const prodQuantity = document.createElement("input");
+        prodQuantity.type = "number";
+        prodQuantity.min = "1";
+        prodQuantity.value = quantity;
+        prodQuantity.dataset.id = id;
+        tdQuantity.appendChild(prodQuantity)
+
+        const tdDalete = document.createElement("td");
+        const prodDalete = document.createElement("button");
+        prodDalete.type = "button";
+        prodDalete.textContent = "x";
+        tdDalete.appendChild(prodDalete);
+
+
+
+        tr.append(tdImg, tdTitle, tdPrice, tdQuantity, tdDalete);
+        
+        productCarrito.appendChild(tr)
+        
+    })
+}
+
+function cleanHtml(){
+    productCarrito.innerHTML = ""
 }
