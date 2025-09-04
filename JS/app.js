@@ -21,12 +21,12 @@ fetch(urlApi)
 })
 
 function mostarCarito(){
-    var carrito = document.getElementsByClassName("carrito")[0];
+    var carrito = document.getElementById("proctCarrito");
 
-    if(carrito.style.visibility == "visible"){
-        carrito.style.visibility = "hidden";
+    if(carrito.style.display === "block"){
+        carrito.style.display = "none";
     }else{
-        carrito.style.visibility = "visible";
+        carrito.style.display = "block";
     }
 }
 
