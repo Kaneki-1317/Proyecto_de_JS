@@ -41,6 +41,16 @@ document.addEventListener("DOMContentLoaded", function(){
 
 function eventListener() {
     todosProductos.addEventListener("click", getDataElements);
+
+    const loadProduct = localStorage.getItem("products")
+    if(loadProduct) {
+        productsArray = JSON.parse(loadProduct);
+        productsHtml();
+        upDateCartCount();
+        updateTotal();
+    }else{
+        productsArray = [];
+    }
 }
 
 function upDateCartCount(){
@@ -133,6 +143,11 @@ function productsHtml(){
         productCarrito.appendChild(tr)
         
     })
+    saveLocalStorage()
+}
+
+function saveLocalStorage(){
+    localStorage.setItem("products", JSON.stringify(productsArray));
 }
 
 function updateQuantity(e){
@@ -146,14 +161,16 @@ function updateQuantity(e){
 
     productsHtml();
     updateTotal();
+    sa
 }
 
 function borrarProducto(idProd){
     productsArray = productsArray.filter(prod => prod.id !== idProd);
     showAlert("EL producto fue eliminado correctamente", "success")
     productsHtml();
-    upDateCartCount()
-    updateTotal()
+    upDateCartCount();
+    updateTotal();
+    saveLocalStorage();
 }
 
 function showAlert(mensaje, type){
