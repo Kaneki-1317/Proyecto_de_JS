@@ -102,22 +102,26 @@ function productsHtml(){
         const { img, title, price, quantity, id } = prod;
         
         const tr = document.createElement("tr");
+        tr.classList.add("tr-produc");
 
 
         const tdImg = document.createElement("td");
         const prodImg = document.createElement("img");
         prodImg.src = img;
         prodImg.alt = "image product";
+        prodImg.classList.add("img-produc");
         tdImg.appendChild(prodImg);
 
         const tdTitle = document.createElement("td");
         const prodTitle = document.createElement("p");
         prodTitle.textContent = title;
+        prodTitle.classList.add("p-title");
         tdTitle.appendChild(prodTitle);
 
         const tdPrice = document.createElement("td");
         const prodPrice = document.createElement("p");
         prodPrice.textContent = `$${price.toFixed(2) * quantity}`;
+        prodPrice.classList.add("p-price");
         tdPrice.appendChild(prodPrice);
 
         const tdQuantity = document.createElement("td");
@@ -126,6 +130,7 @@ function productsHtml(){
         prodQuantity.min = "1";
         prodQuantity.value = quantity;
         prodQuantity.dataset.id = id;
+        prodQuantity.classList.add("quatity-car")
         prodQuantity.oninput = updateQuantity;
         tdQuantity.appendChild(prodQuantity);
 
@@ -133,6 +138,7 @@ function productsHtml(){
         const prodDalete = document.createElement("button");
         prodDalete.type = "button";
         prodDalete.textContent = "x";
+        prodDalete.classList.add("delete-car")
         prodDalete.onclick = () => borrarProducto(id);
         tdDalete.appendChild(prodDalete);
 
