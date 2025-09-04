@@ -20,8 +20,15 @@
             <div class="menu">
                 <button>Inicio</button>
                 <button>Buscar</button>
-                <button onclick="mostarCarito()"><i class="fa-solid fa-cart-shopping"></i></button>
-                <div class="carrito" id="proctCarrito"></div>
+                <button onclick="mostarCarito()"><i class="fa-solid fa-cart-shopping"></i><span id="numeroCarrito">0</span></button>
+                <div>
+                    <div class="carrito" id="proctCarrito"></div>
+                    <tfoot>
+                        <tr class="total">
+                            <h4 class="h4Total">Total: <span id="total"></span></h4>
+                        </tr>
+                    </tfoot>
+                </div>
             </div>
             
         </header>

@@ -43,6 +43,17 @@ function eventListener() {
     todosProductos.addEventListener("click", getDataElements);
 }
 
+function upDateCartCount(){
+    const conteo = document.getElementById("numeroCarrito");
+    conteo.textContent = productsArray.length;
+}
+
+function updateTotal(){
+    const total = document.getElementById("total")
+    let totalProducto = productsArray.reduce((total, prod) => total + (prod.price * prod.quantity), 0);
+    total.textContent = `$${totalProducto.toFixed(2)}`
+}
+
 function getDataElements(e){
     if (e.target.classList.contains("btn-carrito")){
         const elementHtml = e.target.parentElement;
@@ -59,9 +70,20 @@ function selectData(prod){
         quantity: 1
     }
 
-    productsArray = [...productsArray, productObj]
+    const exists = productsArray.some(prod => prod.id === productObj.id);
 
+    if(exists){
+        showAlert("El producto ya esta en el carrito", "error")
+        return
+    }
+
+    productsArray = [...productsArray, productObj]
+    
     productsHtml();
+
+    showAlert("EL producto fue agregado correctamente", "success")
+    upDateCartCount()
+    updateTotal()
 }
 
 function productsHtml(){
@@ -85,7 +107,7 @@ function productsHtml(){
 
         const tdPrice = document.createElement("td");
         const prodPrice = document.createElement("p");
-        prodPrice.textContent = `$${price.toFixed(2)}`;
+        prodPrice.textContent = `$${price.toFixed(2) * quantity}`;
         tdPrice.appendChild(prodPrice);
 
         const tdQuantity = document.createElement("td");
@@ -94,12 +116,14 @@ function productsHtml(){
         prodQuantity.min = "1";
         prodQuantity.value = quantity;
         prodQuantity.dataset.id = id;
-        tdQuantity.appendChild(prodQuantity)
+        prodQuantity.oninput = updateQuantity;
+        tdQuantity.appendChild(prodQuantity);
 
         const tdDalete = document.createElement("td");
         const prodDalete = document.createElement("button");
         prodDalete.type = "button";
         prodDalete.textContent = "x";
+        prodDalete.onclick = () => borrarProducto(id);
         tdDalete.appendChild(prodDalete);
 
 
@@ -109,6 +133,39 @@ function productsHtml(){
         productCarrito.appendChild(tr)
         
     })
+}
+
+function updateQuantity(e){
+    const neeQuantity = parseInt(e.target.value, 10);
+    const idProd = parseInt(e.target.dataset.id, 10);
+
+    const product = productsArray.find(prod => prod.id === idProd);
+    if(product && neeQuantity > 0){
+        product.quantity = neeQuantity;
+    }
+
+    productsHtml();
+    updateTotal();
+}
+
+function borrarProducto(idProd){
+    productsArray = productsArray.filter(prod => prod.id !== idProd);
+    showAlert("EL producto fue eliminado correctamente", "success")
+    productsHtml();
+    upDateCartCount()
+    updateTotal()
+}
+
+function showAlert(mensaje, type){
+    const noRepetirAlert = document.querySelector(".alert");
+    if(noRepetirAlert) noRepetirAlert.remove();
+    const div = document.createElement("div");
+    div.classList.add("alert", type)
+    div.textContent = mensaje;
+
+    document.body.appendChild(div);
+
+    setTimeout(() => div.remove(), 5000);
 }
 
 function cleanHtml(){
