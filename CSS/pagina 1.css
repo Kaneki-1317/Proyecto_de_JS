@@ -164,7 +164,7 @@ img{
 .img-productos{
     border-radius: 20px;
     max-width: 50%;
-    height: 60%;
+    height: 50%;
     object-fit: contain;
 }
 
@@ -493,6 +493,10 @@ button.btn-carrito:hover{
     header{
         gap: 10%;
     }
+
+    div#proctCarrito.carrito{
+        transform: translate(14%, -3%);
+    }
 }
 
 @media (max-width: 320px){
@@ -502,6 +506,11 @@ button.btn-carrito:hover{
 
     .menu{
         gap: 10px;
+    }
+
+    div#proctCarrito.carrito{
+        transform: translate(14%, -3%);
+        width: 90%;
     }
 }
 
