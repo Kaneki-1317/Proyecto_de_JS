@@ -323,6 +323,103 @@ button.btn-carrito:hover{
     color: var(--color-para-texto);
 }
 
+.container-carrito{
+    background-color: bisque;
+    height: 500px;
+    width: 400px;
+    position: absolute;
+    z-index: 5;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-carrito .carrito{
+    height: 80%;
+}
+
+.container-carrito .h6Total{
+    margin: 5px;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0);
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.container-carrito button{
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+.tr-produc{
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    box-shadow: 0 0 10px 5px #ffffff;
+}
+
+.a-inicio{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.btn-inicio, button.car{
+    cursor: pointer;
+}
+
+.img-produc{
+    width: 70px;
+}
+
+.p-title{
+    font-size: 15px;
+    color: #ffffff
+}
+
+.p-price{
+    color: #15ff00;
+}
+
+.quatity-car{
+    width: 30px;
+}
+
+button.delete-car{
+    color: rgb(255, 0, 0);
+    font-size: 25px;
+    background: none;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    cursor: pointer; 
+}
+
+span#total{
+    color: #15ff00;
+}
+
+button.btn-carrito{
+    background: none;
+    border: none;
+    border: 1px solid var(--color-para-texto);
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #b7d0fd;
+    margin-top: 10px;
+}
+
+button.btn-carrito:hover{
+    cursor: pointer;
+    background-color: rgb(154, 154, 154);
+}
+
 
 @media (max-width: 2560px) {
 
@@ -513,4 +610,6 @@ button.btn-carrito:hover{
         width: 90%;
     }
 }
+
+
 

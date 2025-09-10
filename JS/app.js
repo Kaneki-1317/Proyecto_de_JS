@@ -1,13 +1,20 @@
 //Url del Api
 const urlApi = "https://fakestoreapi.com/products"
 
+let dataApi = []; // Aquí guardamos todos los productos originales
+
 //Visualización del api en el html
 fetch(urlApi)
 .then(response => response.json())
 .then(data => {   
-    for (let i = 0; i <= 20; i++){
+    dataApi = data; // Guardamos todos los productos en dataApi
+    mostrarProductos(dataApi);
+})
+
+function mostrarProductos(productos){
+    for (let i = 0; i < productos.length; i++){
         const contenedor = document.getElementById(`producto${i + 1}`)
-        const producto = data[i];
+        const producto = productos[i];
 
         if(contenedor && producto){
             contenedor.innerHTML = `
@@ -18,10 +25,9 @@ fetch(urlApi)
             `;
         }
     }
-})
-
+}
 function mostarCarito(){
-    var carrito = document.getElementById("proctCarrito");
+    var carrito = document.getElementById("container-carrito");
 
     if(carrito.style.display === "block"){
         carrito.style.display = "none";
@@ -31,7 +37,8 @@ function mostarCarito(){
 }
 
 const todosProductos = document.getElementById("todosProductos");
-const productCarrito = document.getElementById("proctCarrito")
+const productCarrito = document.getElementById("proctCarrito");
+const buscador = document.getElementById("buscarProducto");
 
 let productsArray = [];
 
@@ -194,3 +201,63 @@ function showAlert(mensaje, type){
 function cleanHtml(){
     productCarrito.innerHTML = ""
 }
+
+document.addEventListener("DOMContentLoaded", function(){
+    eventListener();
+
+    const btnBorrarTodo = document.getElementById("btn-borrar-todo");
+    if(btnBorrarTodo){
+        btnBorrarTodo.addEventListener("click", borrarTodo);
+    }
+});
+
+function borrarTodo(){
+    if(productsArray.length === 0){
+        showAlert("No hay productos en el carrito", "error");
+        return;
+    }
+
+    productsArray = [];
+    productsHtml();
+    upDateCartCount();
+    updateTotal();
+    saveLocalStorage();
+    showAlert("Se borró todo el carrito correctamente", "success");
+}
+
+buscador.addEventListener("input", () => {
+    const texto = buscador.value.toLowerCase();
+
+    const filtrados = dataApi.filter(prod => 
+        prod.title.toLowerCase().includes(texto)
+    );
+
+    // Limpiar todos los contenedores antes de mostrar
+    for(let i = 1; i <= 20; i++){
+        const contenedor = document.getElementById(`producto${i}`);
+        if(contenedor) contenedor.innerHTML = "";
+    }
+
+    mostrarProductos(filtrados);
+});
+
+const filtroCategoria = document.getElementById("filtroCategoria");
+
+filtroCategoria.addEventListener("change", () => {
+    const categoria = filtroCategoria.value;
+
+    let filtrados;
+    if(categoria === "all"){
+        filtrados = dataApi; // todas
+    } else {
+        filtrados = dataApi.filter(prod => prod.category === categoria);
+    }
+
+    // limpiar contenedores antes de renderizar
+    for(let i = 1; i <= 20; i++){
+        const contenedor = document.getElementById(`producto${i}`);
+        if(contenedor) contenedor.innerHTML = "";
+    }
+
+    mostrarProductos(filtrados);
+});

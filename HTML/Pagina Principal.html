@@ -13,24 +13,25 @@
     <main>
 
         <header>
-            <div class="logo">
-                <h1 class="marca">REM</h1>
-                <h5 class="nombre-marca">Red Eye Model</h5>
-            </div>
             <div class="menu">
-                <button class="btn-inicio"><a class="a-inicio" href="Pagina Principal.html">Inicio</a></button>
                 <button onclick="mostarCarito()" class="car"><i class="fa-solid fa-cart-shopping"></i><span id="numeroCarrito">0</span></button>
-                <div>
-                    <div class="carrito" id="proctCarrito"></div>
-                    <tfoot>
-                        <tr class="total">
-                            <h4 class="h4Total">Total: <span id="total"></span></h4>
-                        </tr>
-                    </tfoot>
-                </div>
             </div>
-            
+            <input type="text" id="buscarProducto" placeholder="Buscar producto...">
         </header>
+        <aside>
+            <div class="container-carrito" id="container-carrito">
+                <div class="carrito" id="proctCarrito"></div>
+                <div class="h6Total"><h6>Total: <span id="total"></span></h6></div>
+                <button id="btn-borrar-todo">Borrar todo</button>
+            </div>
+        </aside>
+        <select id="filtroCategoria">
+            <option value="all">Todas</option>
+            <option value="men's clothing">Ropa de Hombre</option>
+            <option value="women's clothing">Ropa de Mujer</option>
+            <option value="jewelery">Joyería</option>
+            <option value="electronics">Electrónica</option>
+        </select>
 
         <section class="container-productos">
             <a href="/HTML/html secundarios/Hombre.html" class="card-producto"><img src="/IMG/hombre card.jpg" alt="">Hombre</div></a>
