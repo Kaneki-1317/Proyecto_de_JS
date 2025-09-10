@@ -101,6 +101,7 @@ function selectData(prod){
     showAlert("EL producto fue agregado correctamente", "success")
     upDateCartCount()
     updateTotal()
+    cupon()
 }
 
 function productsHtml(){
@@ -174,7 +175,7 @@ function updateQuantity(e){
 
     productsHtml();
     updateTotal();
-    sa
+    cupon()
 }
 
 function borrarProducto(idProd){
@@ -183,6 +184,7 @@ function borrarProducto(idProd){
     productsHtml();
     upDateCartCount();
     updateTotal();
+    cupon()
     saveLocalStorage();
 }
 
@@ -221,6 +223,7 @@ function borrarTodo(){
     productsHtml();
     upDateCartCount();
     updateTotal();
+    cupon()
     saveLocalStorage();
     showAlert("Se borró todo el carrito correctamente", "success");
 }
@@ -242,6 +245,15 @@ buscador.addEventListener("input", () => {
 });
 
 const filtroCategoria = document.getElementById("filtroCategoria");
+const cuponDeDescuento = document.getElementById("cuponDeDescuento")
+
+function cupon(){
+    const total1 = document.getElementById("cupon")
+    let totalProducto1 = productsArray.reduce((total1, prod) => total1 + (prod.price * prod.quantity ), 0);
+    total1.textContent = `$${totalProducto1.toFixed(2)}`
+
+    
+}
 
 filtroCategoria.addEventListener("change", () => {
     const categoria = filtroCategoria.value;
